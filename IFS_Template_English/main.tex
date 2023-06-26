@@ -1,0 +1,404 @@
+% Last changes from 26/06/23 by Magdalena Glas 
+
+\documentclass[11pt,a4paper,english,notitlepage]{report}
+
+
+%\usepackage[applemac]{inputenc} %Kommentierung entfernen,falls Mac
+\usepackage[utf8]{inputenc} %Windows, Linux
+%\usepackage[ansinew]{inputenc} %TeXnicCenter kann leider kein UTF-8
+
+%Umlaute
+\usepackage[english]{babel}
+%usepackage[ngerman]{babel}
+
+
+
+\usepackage{multirow}
+%einige Variablen definieren
+\newcommand{\titlethema}{Title}
+\newcommand{\authorname}{Firstname Lastname}
+\newcommand{\authormail}{email@adresse.de}
+\newcommand{\studentID}{1234567}
+\newcommand{\submissiondate}{01.01.1999}
+\newcommand{\supervisor}{Max Muster}
+\newcommand{\type}{Bachelor's-\textbackslash Master's Thesis\textbackslash Seminar}
+
+%use for seminars with multiple authors
+\newcommand{\authornameTwo}{Firstname Lastname}
+\newcommand{\authornameThree}{Firstname Lastname}
+
+
+%use for seminars with multiple authors, this will be shown in the footer, therefore change settings for \rfoot below
+\newcommand{\authornames}{Meier, Müller and Huber}
+
+% Default Font
+%\usepackage{times}
+%\usepackage{garamond}
+
+% Default fonts (\rmdefault Times, 
+%\sfdefault Helvetica and \ttdefault Courier
+\usepackage{mathptmx}  %Times
+\usepackage[scaled=.92]{helvet}
+%\usepackage{mathpazo} %Palatino
+%\usepackage[scaled=.96]{berasans}
+\usepackage{courier}
+
+%figures
+\usepackage{graphicx}
+\usepackage{subfigure} 
+
+% save figures in sub directory /images
+\graphicspath{{./images/}}
+
+% Quotes
+\usepackage{dirtytalk}
+
+% tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+% Margins
+\usepackage[a4paper]{geometry}
+\geometry{top=26mm, bottom=19mm, left=50mm, right=25mm, includefoot}
+
+% Margins on cover
+\usepackage[strict]{changepage}
+
+
+%header/footer on landscape pages
+\usepackage{pdflscape}
+
+\setlength\parindent{0pt}
+
+\usepackage{microtype}
+
+
+%1.5 line spacing
+\usepackage{setspace}
+\onehalfspacing
+
+%adjusting header and footer
+\usepackage{fancyhdr}
+
+
+
+
+\rhead{\small\thepage}
+\lhead{\footnotesize\leftmark}
+\chead{}
+\rfoot{\footnotesize{\authorname, \the\year}}
+
+%for seminars
+%\rfoot{\footnotesize{\authornames, \the\year}}
+
+\lfoot{\footnotesize{\type}}
+\cfoot{}
+
+
+% special characters
+%\usepackage{textcomp} 
+
+
+% maths
+%\usepackage{amssymb}
+%\usepackage{amsmath} 
+%\usepackage{amsfonts} 
+
+
+% Code and pseudocode
+%\usepackage[ruled]{algorithm}
+%\usepackage{algpseudocode}
+%\usepackage[boxed]{algorithm}
+%\usepackage{algpseudocode}
+
+%syllabification
+\usepackage[T1]{fontenc}
+
+
+
+% PDF options
+\usepackage[hyperfootnotes=false, pdfpagelabels]{hyperref}
+\urlstyle{rm}
+\hypersetup{%
+bookmarksopen={true},
+%bookmarksopenlevel={2},
+bookmarksnumbered=true,
+pdfstartpage={1},
+pdftitle={\type},
+pdfsubject={\titelthema},
+pdfauthor={\authorname},
+pdfkeywords={},
+pdfcreator={hyperref},
+pdfproducer={LaTeX with hyperref},
+pdffitwindow={false},
+pdfpagelayout={OneColumn} %SinglePage
+}
+
+
+\usepackage{url}
+
+\usepackage{color}
+\usepackage{colortbl} %Für Listings
+  \definecolor{dunkelgrau}{rgb}{0.7,0.7,0.7}
+  \definecolor{hellgrau}{rgb}{0.9,0.9,0.9}
+
+\usepackage{listing}
+  \renewcommand{\listlistingname}{Listings}
+
+\usepackage{listings}
+  \lstset{numbers=left, numberstyle=\tiny, basicstyle=\scriptsize, backgroundcolor=\color{hellgrau}}
+  \lstset{captionpos=b, aboveskip=15pt, belowskip=8pt, showstringspaces=false}
+
+
+
+%List of abbreviations, print only the ones used
+\usepackage[printonlyused]{acronym}
+
+%Supporting apa citation styl with round brackets
+\usepackage[round]{natbib} 
+
+%Appendix
+\usepackage{appendix}
+
+
+%Formatting captions of figures and tables
+\usepackage[format=hang,margin=10pt,font=small,labelfont=bf]{caption}
+
+%Include pdf
+%\usepackage{pdfpages}
+%\includepdf[pages=1-4]{Meindoku.pdf}
+
+
+%Euro 
+%\usepackage{eurosym} 
+% das Euro-Zeichen kann so eingefügt werden: \euro{}
+
+\renewcommand{\plainheadrulewidth}{0.4pt}
+
+
+% No Indents
+\setlength{\parindent}{0em}
+
+\author{
+\authorname\\
+\texttt{\authormail}
+}
+
+\begin{document}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%
+\pagenumbering{roman}
+
+
+\phantomsection
+%\addcontentsline{toc}{chapter}{Cover}
+\pdfbookmark[0]{Cover}{Cover}
+\label{cover}
+
+
+%%%%%%Only include the cover you need, you can remove the other covers from the project
+
+
+% Eidesstattliche Erklärung notwendig
+\include{CoverBA}
+\include{CoverMA}
+
+
+% Eidesstattliche Erklärung _nicht_ notwendig
+\include{CoverPraxisSeminar}
+\include{CoverProjektSeminar}
+\include{CoverTheoSeminar}
+
+
+%Include Abstract
+\phantomsection
+%\addcontentsline{toc}{chapter}{Abstract}
+\pdfbookmark[0]{Abstract}{abstract}
+\include{00_Abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+
+% Keine Kopf-/Fußzeile auf den ersten Seiten
+\pagestyle{fancyplain}
+
+% "Kapitel" aus Kopfzeile weglassen
+\renewcommand{\chaptermark}[1]{\markboth{\uppercase{\thechapter.\ #1}}{}}
+% Nummerierungen nur bis Gliederungsebene 3 (\subsubsection)
+\setcounter{secnumdepth}{3}
+% Nur Überschriften bis Gliederungsebene 3 (\subsubsection) ins Inhaltsverzeichnis
+\setcounter{tocdepth}{3}
+\setcounter{page}{1}
+\newpage
+
+
+%Inhaltsverzeichnis
+  \phantomsection
+%  \addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
+  \pdfbookmark[0]{Inhaltsverzeichnis}{Inhaltsverzeichnis}
+  \label{Inhaltsverzeichnis}
+  \tableofcontents
+  \newpage
+  
+%List of Figures
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
+  \newpage
+
+%List of Tables
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+  \newpage
+
+%List of Listings
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Listings}
+  \lstlistoflistings
+  \newpage
+
+%List of abbreviations, print only used
+  \clearpage
+  \phantomsection
+  \chapter*{List of Abbreviations}
+  \markboth{\uppercase{List of Abbreviations}}{}
+   \addcontentsline{toc}{chapter}{List of Abbreviations}
+   \begin{acronym}[MMMMMMMMM]
+   \setlength{\itemsep}{-\parsep}
+   %Abb bold
+   \renewcommand*{\acsfont}[1]{{\textbf{#1}}}
+   \renewcommand{\aclabelfont}[1]{\normalfont{\normalsize{#1}}\hfill}
+      \acro{SaaS}{Software as a Service}
+      \acro{XML}{Extensible Markup Language}
+   \end{acronym}
+  \newpage
+
+
+  \clubpenalty=10000
+  \widowpenalty=10000 
+  \displaywidowpenalty = 10000
+  \tolerance=500 %pagebreak
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{page}{1}
+
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Introduction %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{01_Introduction}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Main Part %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{02_MainPart}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Conclusion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{03_Conclusion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendices}
+\appendix
+\appendixpage
+
+%%\appendix
+%%\phantomsection
+%\renewcommand*\appendixpagename{Appendix} 
+%%\appendixpage
+%%\addappheadtotoc
+
+
+\chapter{Appendix 1}
+\label{chap:appendix_1}
+
+\section{Appendix Section A}
+\label{sec:appendix_1}
+
+\section{Appendix Section B}
+\label{sec:appendix_2}
+
+
+\chapter{Appendix 2}
+\label{chap:appendix_2}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{apalike}
+\bibliography{References}
+
+\clearpage
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Eidesstattliche Erklärung %%%%
+%
+% nur bei Abschlussarbeiten! Auch bei englischen Arbeiten auf Deutsch
+%
+
+\thispagestyle{empty}
+\phantomsection
+\label{erklaerung}
+%\addcontentsline{toc}{chapter}{Erklärung}
+\pdfbookmark[0]{Eidesstattliche Erklärung}{erklaerung}
+
+\setlength{\parindent}{0em}
+
+\markboth{\uppercase{Eidesstattliche Erklärung}}{}
+\textbf{\large{Erklärung an Eides statt}}
+
+ \vspace*{65pt}
+ 
+%% WICHTIG: unpassendes rauslöschen, sodass nur EINE Erklärung in der Arbeit steht 
+
+%% Bachelor und Master nach Prüfungsordnung 2015
+% \vspace*{20pt}
+% Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer/der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §13 Abs. 3 PO 2015 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+
+
+
+%% Bachelor nach Prüfungsordnung 2021
+
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer/der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §27 Abs. 6 BPO 2021 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+
+\vspace*{65pt}
+
+%% Master nach Prüfungsordnung 2021
+
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer/der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §26 Abs. 6 BPO 2021 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+
+\vspace*{65pt}
+
+Regensburg, den \submissiondate
+
+\vspace*{60pt}
+
+
+\authorname
+
+Matrikelnummer \studentID
+
+\end{document}

@@ -1,0 +1,407 @@
+% Last changes from 26/06/23 by Magdalena Glas 
+\documentclass[11pt,a4paper,german,notitlepage]{report}
+
+
+%\usepackage[applemac]{inputenc} %Kommentierung entfernen,falls Mac
+\usepackage[utf8]{inputenc} %Windows, Linux
+%\usepackage[ansinew]{inputenc} %TeXnicCenter kann leider kein UTF-8
+
+
+%Umlaute
+%\usepackage[english]{babel}
+\usepackage[ngerman]{babel}
+
+
+%einige Variablen definieren
+\newcommand{\titelthema}{Thema der \\ Arbeit}
+\newcommand{\authorname}{Vorname Name}
+\newcommand{\authormail}{email@adresse.de}
+\newcommand{\matrikelnr}{1234567}
+\newcommand{\abgabedatum}{09. September 9999}
+\newcommand{\betreuer}{Max Muster}
+\newcommand{\arbeitstyp}{Bachelor-\textbackslash Masterarbeit \textbackslash Seminar}
+
+
+%use for seminars with multiple authors
+\newcommand{\authornameTwo}{Vorname Nachname}
+\newcommand{\authornameThree}{Vorname Nachname}
+
+
+%use for seminars with multiple authors, this will be shown in the footer, therefore change settings for \rfoot below
+\newcommand{\authornames}{Meier, Müller and Huber}
+
+
+% Standardschriftart
+%\usepackage{times}
+%\usepackage{garamond}
+
+% Default-Schriften (\rmdefault Times, 
+%\sfdefault Helvetica und \ttdefault Courier
+%besser als \usepackage{times} da auch Mathematikschriften 
+%berücksichtigt werden
+\usepackage{mathptmx}  %Times
+\usepackage[scaled=.92]{helvet}
+%\usepackage{mathpazo} %Palatino
+%\usepackage[scaled=.96]{berasans}
+\usepackage{courier}
+
+%Grafiken
+\usepackage{graphicx}
+\usepackage{subfigure} 
+
+% Grafiken in einem Unterordner speichern
+\graphicspath{{./images/}}
+
+% Schöne Anführungszeichen
+\usepackage{csquotes}
+
+
+% Tabellen
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+%Supporting apa citation styl with round brackets
+\usepackage[round]{natbib} 
+
+% Seitenränder
+\usepackage[a4paper]{geometry}
+\geometry{top=26mm, bottom=19mm, left=50mm, right=25mm, includefoot}
+
+% Seitenränder auf Deckblatt
+\usepackage[strict]{changepage}
+
+%Querseiten mit korrekter Kopf-/Fußzeile
+\usepackage{pdflscape}
+
+
+%sauberer Blocksatz, optischer Randausgleich
+\usepackage{microtype}
+
+
+%1,5facher Zeilenabstand nur im Fließtext
+\usepackage{setspace}
+\onehalfspacing
+
+%einfaches Anpassen von Kopf- und Fußzeilen 
+\usepackage{fancyhdr}
+
+\rhead{\small\thepage}
+\lhead{\footnotesize\leftmark}
+\chead{}
+\rfoot{\footnotesize{\authorname, \the\year}}
+\lfoot{\footnotesize{\arbeitstyp}}
+\cfoot{}
+
+%für Seminare
+%\rfoot{\footnotesize{\authornames, \the\year}}
+
+
+% zusätzliche Sonderzeichen
+%\usepackage{textcomp} 
+
+
+% Mathematisches
+%\usepackage{amssymb}
+%\usepackage{amsmath} 
+%\usepackage{amsfonts} 
+
+
+% Code und Pseudocode
+%\usepackage[ruled]{algorithm}
+%\usepackage{algpseudocode}
+%\usepackage[boxed]{algorithm}
+%\usepackage{algpseudocode}
+
+%Silbentrennung
+\usepackage[T1]{fontenc}
+
+
+
+% PDF options
+\usepackage[hyperfootnotes=false, pdfpagelabels]{hyperref}
+\urlstyle{rm}
+\hypersetup{%
+bookmarksopen={true},
+%bookmarksopenlevel={2},
+bookmarksnumbered=true,
+pdfstartpage={1},
+pdftitle={\arbeitstyp},
+pdfsubject={\titelthema},
+pdfauthor={\authorname},
+pdfkeywords={},
+pdfcreator={hyperref},
+pdfproducer={LaTeX with hyperref},
+pdffitwindow={false},
+pdfpagelayout={OneColumn} %SinglePage
+}
+
+
+\usepackage{url}
+
+\usepackage{color}
+\usepackage{colortbl} %Für Listings
+  \definecolor{dunkelgrau}{rgb}{0.7,0.7,0.7}
+  \definecolor{hellgrau}{rgb}{0.9,0.9,0.9}
+
+\usepackage{listing}
+  \renewcommand{\listlistingname}{Quelltextverzeichnis}
+
+\usepackage{listings}
+  \lstset{numbers=left, numberstyle=\tiny, basicstyle=\scriptsize, backgroundcolor=\color{hellgrau}}
+  \lstset{captionpos=b, aboveskip=15pt, belowskip=8pt, showstringspaces=false}
+
+
+
+%Abkürzungsverzeichnis, nur verwendete Abkürzungen darstellen
+\usepackage[printonlyused]{acronym}
+
+%Anhang
+\usepackage{appendix}
+
+
+%Bild-, Tabellenuntschriften schöner formatieren
+\usepackage[format=hang,margin=10pt,font=small,labelfont=bf]{caption}
+
+%PDF einbinden
+%\usepackage{pdfpages}
+%\includepdf[pages=1-4]{Meindoku.pdf}
+
+
+%Euro 
+%\usepackage{eurosym} 
+% das Euro-Zeichen kann so eingefügt werden: \euro{}
+
+%Lorem ipsum Auto-Text um Format zu zeigen
+\usepackage{blindtext}
+
+
+% Trennlinie unter der Kopfzeile
+\renewcommand{\plainheadrulewidth}{0.4pt}
+
+
+% Abstand zwischen Absätzen
+%\parskip 3pt
+
+% kein Erstzeileneinzug
+%\setlength{\parindent}{0em}
+
+\author{
+\authorname\\
+\texttt{\authormail}
+}
+
+\begin{document}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+%
+\pagenumbering{roman}
+
+
+\phantomsection
+%\addcontentsline{toc}{chapter}{Deckblatt}
+\pdfbookmark[0]{Deckblatt}{Deckblatt}
+\label{Deckblatt}
+
+% Eidesstattliche Erklärung notwendig
+\include{DeckblattBA}
+\include{DeckblattMA}
+
+
+% Eidesstattliche Erklärung _nicht_ notwendig
+\include{DeckblattPraxisseminar}
+\include{DeckblattProjektseminar}
+\include{DeckblattSeminar}
+
+
+%Abstract einbinden
+\phantomsection
+%\addcontentsline{toc}{chapter}{Abstract}
+\pdfbookmark[0]{Abstract}{abstract}
+\include{Abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\newpage
+
+% Keine Kopf-/Fußzeile auf den ersten Seiten
+\pagestyle{fancyplain}
+
+% "Kapitel" aus Kopfzeile weglassen
+\renewcommand{\chaptermark}[1]{\markboth{\uppercase{\thechapter.\ #1}}{}}
+% Nummerierungen nur bis Gliederungsebene 3 (\subsubsection)
+\setcounter{secnumdepth}{3}
+% Nur Überschriften bis Gliederungsebene 3 (\subsubsection) ins Inhaltsverzeichnis
+\setcounter{tocdepth}{3}
+\setcounter{page}{1}
+\newpage
+
+
+%Inhaltsverzeichnis
+  \phantomsection
+%  \addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
+  \pdfbookmark[0]{Inhaltsverzeichnis}{Inhaltsverzeichnis}
+  \label{Inhaltsverzeichnis}
+  \tableofcontents
+  \newpage
+  
+%Abbildungsverzeichnis
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+  \listoffigures
+  \newpage
+
+%Tabellenverzeichnis
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+  \listoftables
+  \newpage
+
+%Verzeichnis der Codelistings
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Listings}
+  \lstlistoflistings
+  \newpage
+
+%Abkürzungsverzeichnis
+% nur verwendete Abkürzungen werden dargestellt
+  \clearpage
+  \phantomsection
+  \chapter*{Abkürzungsverzeichnis}
+  \markboth{\uppercase{Abkürzungsverzeichnis}}{}
+   \addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+   \begin{acronym}[MMMMMMMMM]
+   %Kompaktansicht, Zeilenabstand verringern
+   \setlength{\itemsep}{-\parsep}
+   %Abkürzung fett
+   \renewcommand*{\acsfont}[1]{{\textbf{#1}}}
+   %auch für Abkürzungen Serifenschrift verwenden
+   \renewcommand{\aclabelfont}[1]{\normalfont{\normalsize{#1}}\hfill}
+      \acro{Bsp.}{Beispiel}
+      \acro{SaaS}{Software as a Service}
+      \acro{XML}{Extensible Markup Language}
+   \end{acronym}
+  \newpage
+
+  \clubpenalty=10000
+  \widowpenalty=10000 
+  \displaywidowpenalty = 10000
+  \tolerance=500 %Zeilenumbruch
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Nummerierung wieder bei 1 beginnen
+\setcounter{page}{1}
+
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Einleitung %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{01_Einleitung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hauptteil %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{02_Hauptteil}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Schluss %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{03_Schluss}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Literaturverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendices}
+\appendix
+\appendixpage
+
+%%\appendix
+%%\phantomsection
+%\renewcommand*\appendixpagename{Anhang} 
+%%\appendixpage
+%%\addappheadtotoc
+
+\chapter{Erster Anhang}
+\label{chap:anhang_1}
+
+\chapter{Zweiter Anhang}
+\label{chap:anhang_2}
+
+\section{Anhang}
+\label{sec:anhang_2_1}
+
+\section{Anhang}
+\label{sec:anhang_2_2}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Literaturverzeichnis %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\bibliographystyle{apalike-german}
+\bibliography{References}
+
+\clearpage
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Eidesstattliche Erklärung %%%%
+%
+% nur bei Abschlussarbeiten!
+%
+
+\thispagestyle{empty}
+\phantomsection
+\label{erklaerung}
+%\addcontentsline{toc}{chapter}{Erklärung}
+\pdfbookmark[0]{Eidesstattliche Erklärung}{erklaerung}
+
+\setlength{\parindent}{0em}
+
+\markboth{\uppercase{Eidesstattliche Erklärung}}{}
+\textbf{\large{Erklärung an Eides statt}}
+
+\vspace*{65pt}
+
+%% WICHTIG: unpassendes rauslöschen, sodass nur EINE Erklärung in der Arbeit steht 
+
+%% Bachelor und Master nach Prüfungsordnung 2015
+%\vspace*{20pt}
+%Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer/der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §13 Abs. 3 PO 2015 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+
+
+
+%% Bachelor nach Prüfungsordnung 2021
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer/der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §27 Abs. 6 BPO 2021 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+
+\vspace*{65pt}
+
+%% Master nach Prüfungsordnung 2021
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer/der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §26 Abs. 6 BPO 2021 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+
+
+\vspace*{65pt}
+
+Regensburg, den \abgabedatum
+
+\vspace*{60pt}
+
+
+\authorname
+
+Matrikelnummer \matrikelnr
+
+\end{document}
