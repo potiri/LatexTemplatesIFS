@@ -1,0 +1,194 @@
+% define doc
+\documentclass[11pt,a4paper,english,notitlepage]{report}
+
+% load vars
+\input{!vars}
+
+% load config
+\input{!config}
+
+% load acro
+\input{!abbreviations}
+
+% true assertion
+\newcommand{\istrue}{true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% start of visible content 
+\begin{document}
+
+% roman numerals 
+\pagenumbering{roman}
+
+% link to cover in chapters
+\phantomsection
+\pdfbookmark[0]{Cover}{Cover}
+\label{cover}
+
+% cover
+\include{\cover}
+
+% include abstract
+\phantomsection
+\pdfbookmark[0]{Abstract}{abstract}
+\include{00_Abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+% no header/footer on the first two pages
+\pagestyle{fancyplain}
+
+% reomve "chapter" from header
+\renewcommand{\chaptermark}[1]{\markboth{\uppercase{\thechapter.\ #1}}{}}
+
+% numbering up to level 3 (\subsubsection)
+\setcounter{secnumdepth}{3}
+
+% only titles up tp level 3 into list of chapters (\subsubsection) 
+\setcounter{tocdepth}{3}
+\setcounter{page}{1}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% table of contents
+  \phantomsection
+  \pdfbookmark[0]{Table of Contents}{Table of Contents}
+  \label{Table of Contents}
+  \tableofcontents
+  \newpage
+  
+% list of figures
+\ifdefined\hasfigures
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Figures}
+  \listoffigures
+  \newpage
+\fi
+
+% list of tables
+\ifdefined\hastables
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{List of Tables}
+  \listoftables
+  \newpage
+\fi
+
+% list of Listings
+\ifdefined\haslistings
+  \clearpage
+  \phantomsection
+  \addcontentsline{toc}{chapter}{Listings}
+  \lstlistoflistings
+  \newpage
+\fi
+
+% list of abbreviations, prints only used ones
+\ifdefined\hasabbreviations
+  \clearpage
+  \phantomsection
+  \chapter*{List of Abbreviations}
+  \markboth{\uppercase{List of Abbreviations}}{}
+   \addcontentsline{toc}{chapter}{List of Abbreviations}
+   \printacronyms
+  \newpage
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% switch page numbers
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% load contents
+\input{!structure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% References %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendices}
+\appendix
+\appendixpage
+
+\chapter{Appendix 1}
+\label{chap:appendix_1}
+
+\section{Appendix Section A}
+\label{sec:appendix_1}
+
+\section{Appendix Section B}
+\label{sec:appendix_2}
+
+\chapter{Appendix 2}
+\label{chap:appendix_2}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Bibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\printbibliography[title={Bibliography}]
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Eidesstattliche Erklärung %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifx \includeerklaerung\istrue
+
+\newcommand{\BPOone}{BPO2021}
+\newcommand{\BPOtwo}{BPO2024}
+\newcommand{\MPO}{MPO2021}
+
+\thispagestyle{empty}
+\phantomsection
+\label{erklaerung}
+%\addcontentsline{toc}{chapter}{Erklärung}
+\pdfbookmark[0]{Eidesstattliche Erklärung}{erklaerung}
+
+\setlength{\parindent}{0em}
+
+\markboth{\uppercase{Eidesstattliche Erklärung}}{}
+\textbf{\large{Erklärung an Eides statt}}
+
+ \vspace*{65pt}
+
+\ifx \erklaerung\BPOone
+%% Bachelor nach Prüfungsordnung 2021
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer / der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §27 Abs. 6 BPO 2021 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+\fi
+
+\ifx \erklaerung\BPOtwo
+%% Bachelor nach Prüfungsordnung 2024
+%\vspace*{20pt}
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer / der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §27 Abs. 5 BPO 2024 vorgesehenen Rechtsfolgen habe ich Kenntnis. 
+\fi
+
+\ifx \erklaerung\MPO
+%% Master nach Prüfungsordnung 2021
+Ich habe die vorliegende Arbeit selbstständig verfasst und keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit wurde bisher an keiner anderen Hochschule zur Erlangung eines akademischen Grades eingereicht. Die vorgelegten Druckexemplare und die dem Prüfer / der Prüferin zur Verfügung gestellte elektronische Version (PDF-Datei) der Arbeit sind identisch. Von den in §26 Abs. 6 MPO 2021 vorgesehenen Rechtsfolgen habe ich Kenntnis.
+\fi
+
+\vspace*{65pt}
+
+Regensburg, den \submissiondate
+
+\vspace*{60pt}
+
+\authorname
+
+Matrikelnummer \studentID
+
+\fi
+
+\end{document}

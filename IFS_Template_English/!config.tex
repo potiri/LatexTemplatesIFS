@@ -1,0 +1,213 @@
+% silence \showhyphens changed warning
+\RequirePackage{silence}
+\WarningFilter{latex}{Command\showhyphens has changed}
+
+% encoding
+\usepackage[\encoding]{inputenc} %Windows, Linux
+
+%syllabification
+\usepackage[T1]{fontenc}
+
+% language
+\usepackage[english]{babel}
+
+% fonts
+\usepackage{mathptmx}           
+\usepackage[scaled=.92]{helvet}
+\usepackage{courier}
+
+% figures
+\usepackage{graphicx}
+\usepackage{subfig} % prev: subfigure
+\graphicspath{{./images/}} % save in /images
+
+% quotes
+\usepackage{dirtytalk}
+\usepackage{csquotes}
+
+% tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+% margins
+\usepackage[a4paper]{geometry}
+\geometry{top=26mm, bottom=19mm, left=50mm, right=25mm, includefoot}
+\usepackage[strict]{changepage} % margins on cover
+
+% header/footer on landscape pages
+\usepackage{pdflscape}
+
+% no paragraph indents 
+\setlength{\parindent}{0pt}
+\setlength{\parindent}{0em}
+
+% improved typesetting
+\usepackage{microtype}
+
+% 1.5 line spacing
+\usepackage{setspace}
+\onehalfspacing
+
+% adjusting header and footer
+\usepackage{fancyhdr}
+
+% header
+\rhead{\small\thepage}          % page
+\lhead{\footnotesize\leftmark}  % chapter
+\chead{}                        % empty center for spacing
+
+% footer
+\rfoot{\footnotesize{\footer, \the\year}}       % name, year
+\lfoot{\footnotesize{\type}}                    % type
+\cfoot{}                                        % empty center for spacing
+
+% maths
+%\usepackage{amssymb}
+%\usepackage{amsmath} 
+%\usepackage{amsfonts} 
+
+% code and pseudocode
+%\usepackage[ruled]{algorithm}
+%\usepackage{algpseudocode}
+%\usepackage[boxed]{algorithm}
+%\usepackage{algpseudocode}
+
+% pdf options
+\usepackage[hyperfootnotes=false, pdfpagelabels]{hyperref}
+\urlstyle{rm}
+\hypersetup{%
+hidelinks, % hides link boxes
+bookmarksopen={true},
+bookmarksnumbered=true,
+pdfstartpage={1},
+pdftitle={\type},
+pdfsubject={\titlethema},
+pdfauthor={\authorname},
+pdfkeywords={},
+pdfcreator={hyperref},
+pdfproducer={LaTeX with hyperref},
+pdffitwindow={false},
+pdfpagelayout={OneColumn} % continious scrolling
+}
+
+% url handling
+\usepackage{url}
+
+% colors
+\usepackage{xcolor}
+\usepackage{colortbl} % forlistings
+\definecolor{dunkelgrau}{rgb}{0.7,0.7,0.7}
+\definecolor{hellgrau}{rgb}{0.9,0.9,0.9}
+
+% listings
+%\usepackage{listing} % outdated
+%\renewcommand{\listlistingname}{Listings}
+\usepackage{listings}
+\lstset{numbers=left,
+numberstyle=\tiny,
+basicstyle=\scriptsize,
+backgroundcolor=\color{hellgrau},
+captionpos=b,
+aboveskip=15pt,
+belowskip=8pt,
+showstringspaces=false
+}
+
+% list of abbreviations, print only the ones used (alphabetic)
+\usepackage{acro}
+\usepackage{enumitem}
+\NewAcroTemplate[list]{clean}{%
+  \acroheading
+  \acropreamble
+  \begin{description}[
+    font=\normalfont,
+    leftmargin=4cm,       
+    labelwidth=2.5cm,       
+    labelsep=1.5cm,         
+    itemindent=0pt,
+    style=multiline,        
+    parsep=-0.5\baselineskip
+  ]
+  \acronymsmapF{%
+    \item[\acrowrite{short}] \parbox[t]{0.65\textwidth}{\acrowrite{list}}
+  }{\AcroRerun}
+  \end{description}
+}
+
+% apply ac style
+\acsetup{
+  make-links = true,
+  list/display = used,
+  list/heading = none,
+  list/template = clean
+}
+
+% short acro setup, preserve original setup
+\newcommand{\acro}[2]{\DeclareAcronym{#1}{short={#1}, long={#2}}}
+
+% supporting apa citation style with round brackets, modern sources supported
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{!references.bib}
+\newcommand{\citep}{\parencite}
+\newcommand{\citet}{\textcite}
+
+% appendix
+\usepackage{appendix}
+
+% formatting captions of figures and tables
+\usepackage[format=hang,margin=10pt,font=small,labelfont=bf]{caption}
+
+% inject pdf
+%\usepackage{pdfpages}
+%\includepdf[pages=1-4]{Meindoku.pdf}
+
+% extra header line width?
+\renewcommand{\plainheadrulewidth}{0.4pt}
+
+ % configure author
+\author{
+\authorname\\
+\texttt{\authormail}
+}
+
+% kill orphans
+\clubpenalty=10000
+\widowpenalty=10000 
+\displaywidowpenalty = 10000
+\tolerance=500 %pagebreak
+
+% single full hyperlink for the entire APA citation string (Author, year)
+\DeclareFieldFormat{bibhyperrefnonest}{%
+  \DeclareFieldFormat{bibhyperref}{##1}%
+  \bibhyperref{#1}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperrefnonest]{\usebibmacro{cite}}}
+  {}
+  {\usebibmacro{postnote}%
+   \usebibmacro{cite:post}}
+
+\DeclareCiteCommand{\textcite}
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperrefnonest]{\usebibmacro{textcite}}}
+  {}
+  {\usebibmacro{textcite:postnote}%
+   \usebibmacro{cite:post}}
+
+% track listings, figures, tables, abbreviations; hide sections if not needed
+\makeatletter
+\AddToHook{env/figure/before}{\write\@auxout{\string\gdef\string\hasfigures{true}}}
+\AddToHook{env/table/before}{\write\@auxout{\string\gdef\string\hastables{true}}}
+\lst@AddToHook{Init}{\write\@auxout{\string\gdef\string\haslistings{true}}}
+\AddToHook{cmd/ac/before}{\write\@auxout{\string\gdef\string\hasabbreviations{true}}}
+\AddToHook{cmd/acp/before}{\write\@auxout{\string\gdef\string\hasabbreviations{true}}}
+\AddToHook{cmd/Ac/before}{\write\@auxout{\string\gdef\string\hasabbreviations{true}}}
+\AddToHook{cmd/acs/before}{\write\@auxout{\string\gdef\string\hasabbreviations{true}}}
+\AddToHook{cmd/acl/before}{\write\@auxout{\string\gdef\string\hasabbreviations{true}}}
+\makeatother
